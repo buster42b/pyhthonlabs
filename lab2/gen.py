@@ -5,50 +5,45 @@ import random
 fake = Faker('ru_RU')
 
 
-def generate_csv(row_cnt: int) -> None:
-    """Генерирует csv файл с случайными данными с заданным количеством
-    :rtype: None
-    :param row_cnt:
-    """
+def csv_gen(rows: int) -> None:
+    """Создает csv с заданным набором строк"""
     with open('data.csv', 'w', newline='') as csvFile:
         writer = csv.writer(csvFile, delimiter=";", quoting=csv.QUOTE_ALL)
-        for i in range(row_cnt):
-            writer.writerow([get_name(), get_job(), get_department(), get_review(), get_salary()])
+        for i in range(rows):
+            writer.writerow([employee(), occupation(), department(), grade(), pay()])
 
 
-def get_name():
-    """Генерирует случайное имя"""
+def employee():
+    """Возвращает рандомное имя из fake"""
     return fake.name()
 
 
-def get_job():
-    """Генерирует случайную должность"""
+def occupation():
+    """Возвращает рандомную должность из списка"""
     return fake.job()
 
 
-def get_department():
-    """Генерирует случайный отдел из списка"""
-    departments = ['Отдел разработки',
-                   'Отдел кадров',
-                   'Отдел коммерции',
-                   'Отдел CRM',
-                   'Отдел развития',
-                   'Отдел отдыха',
-                   'Отдел финансов']
-    return departments[random.randint(0, len(departments) - 1)]
+def department():
+    """Возвращает рандомное место работы из списка"""
+    dept = ['Бухгалтерия',
+            'Связи с общественностью',
+            'Разработка',
+            'Маркетинг',
+            'Креативный отдел',
+            'Тестирование']
+    return dept[random.randint(0, len(dept) - 1)]
 
 
-def get_review():
+def grade():
     """Генерирует случайную оценку сотрудника"""
     return random.randint(1, 5)
 
 
-def get_salary():
-    """Генерирует случайную зарплату от 50 до 250 тысяч"""
-    return random.randint(50000, 250000)
+def pay():
+    """Определяет зарплату в диапазоне от 30 до 300 тысяч"""
+    return random.randint(30000, 300000)
 
 
 if __name__ == '__main__':
-    row_count = int(input("Введите число строк: "))
-    generate_csv(row_count)
-
+    lines = int(input("Количество сотрудников: "))
+    csv_gen(lines)
