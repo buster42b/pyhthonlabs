@@ -1,6 +1,5 @@
 from collections.abc import Iterable
 
-
 # получение размера генератора
 def ilen(iterable: Iterable):
     """
