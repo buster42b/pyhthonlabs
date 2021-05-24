@@ -7,7 +7,7 @@ def ilen(iterable: Iterable):
     >>> ilen(foo)
     10
     """
-    return len(list(iterable))
+    return sum(1 for _ in iterable)
 
 # переделка многоуровневого массива в одноуровневый
 def flatten(iterable: Iterable):
@@ -43,7 +43,7 @@ def groupby(key, iterable: Iterable):
     >>> groupby('gender', users)
     {'female': [{'gender': 'female', 'age': 23}, {'gender': 'female', 'age': 21}], 'male': [{'gender': 'male', 'age': 20}]} # noqa: E501
     """
-
+    groupBy - setordefault
     res = {}
     for x in iterable:
         if x[key] not in res:
