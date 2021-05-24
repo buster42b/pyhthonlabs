@@ -58,6 +58,11 @@ def chunks(size: int, iterable: Iterable):
     [(0, 1, 2), (3, 4, None)]
     """
 
+    if not isinstance(size, int):
+        raise TypeError()
+    if size <= 0:
+        raise ValueError()
+    
     res = []
     for x in iterable:
         res.append(x)
