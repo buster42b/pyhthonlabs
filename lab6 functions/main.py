@@ -21,6 +21,8 @@ def flatten(iterable: Iterable):
             yield from flatten(i)
         elif isinstance(i, (int, str, float, bool)):
             yield i
+        else:
+            raise ValueError("unexpected type token")
 
 # убирает повторы
 def distinct(iterable: Iterable):
